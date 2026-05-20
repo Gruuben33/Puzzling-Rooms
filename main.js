@@ -1,14 +1,3 @@
-var Engine = Matter.Engine,
-    Render = Matter.Render,
-    Runner = Matter.Runner,
-    Body = Matter.Body,
-    Bodies = Matter.Bodies,
-    Composite = Matter.Composite,
-    Composites = Matter.Composites,
-    Constraint = Matter.Constraint,
-    Events = Matter.Events,
-    Common = Matter.Common;
-
 function setup() {
     engine = Engine.create()
     render = Render.create({
@@ -20,30 +9,46 @@ function setup() {
             wireframes: false,
             background: color(255, 0, 0)
         }
-    });
+    })
 
     createCanvas(windowWidth, windowHeight, render.canvas)
+    textAlign(CENTER, CENTER)
 
-    var ball = Bodies.circle(windowWidth/2, 0, 30, {
-        isStatic: false
-        //airFriction: 1
-    });
+    // var ball = Bodies.circle(windowWidth/2, 0, 30, {
+    //     isStatic: false
+    //     //airFriction: 1
+    // });
 
-    var ground = Bodies.rectangle(windowWidth/2, 5*windowHeight/6, windowWidth - 40, windowHeight/3, {
-        isStatic: true,
-        friction: 0.05
-    });
+    // var ground = Bodies.rectangle(windowWidth/2, 5*windowHeight/6, windowWidth - 40, windowHeight/3, {
+    //     isStatic: true,
+    //     friction: 0.05
+    // });
 
-    Composite.add(engine.world, [ball, ground]);
-    Render.run(render);
-    runner = Runner.create();
-    Runner.run(runner, engine);
+    // Composite.add(engine.world, [ball, ground]);
+    // Render.run(render);
+    // runner = Runner.create();
+    // Runner.run(runner, engine);
+}
+
+function handleState(state) {
+    switch(state) {
+        case state_mainMenu:
+            mainMenu()
+            break;
+        case state_firstPuzzle:
+            break;
+        case state_firstTransition:
+            break;
+        case state_secondPuzzle:
+            break;
+        case state_secondTransition:
+            break;
+        case state_leaderboard:
+            break;
+    }
 }
 
 function draw() {
-    currentTime = Math.round(engine.timing.timestamp/10)/100
-    fill("black");
-    textSize(40);
-    text("bboos", windowWidth/2, windowHeight/2);
-    console.log(currentTime)
+    clear()
+    handleState(currentState)
 }

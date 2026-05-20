@@ -1,9 +1,10 @@
 class Button {
-    constructor(position, purpose, text, color){
+    constructor(position, text, color, nextState, playerCount = null) {
         this.position = position;
-        this.purpose = purpose;
         this.text = text;
         this.color = color;
+        this.nextState = nextState;
+        this.playerCount = playerCount;
     } 
 
     draw() {
