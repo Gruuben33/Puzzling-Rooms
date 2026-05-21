@@ -12,43 +12,74 @@ function setup() {
     })
 
     createCanvas(windowWidth, windowHeight, render.canvas)
+    frameRate(60)
     textAlign(CENTER, CENTER)
+    rectMode(CENTER, CENTER)
+    stateChange(state_mainMenu)
+}
 
-    // var ball = Bodies.circle(windowWidth/2, 0, 30, {
-    //     isStatic: false
-    //     //airFriction: 1
-    // });
+function stateChange(newState) {
+    currentState = newState;
+    if (currentState == state_mainMenu) {
+        buttons = []
+        buttons.push(
+        new Button(createVector(windowWidth/3, windowHeight/2+mainMenuButtonSize), 
+            mainMenuButtonSize, 
+            mainMenuButtonSize, 
+            "1", 
+            mainMenuButtonTextSize, 
+            mainMenuButtonTextColor, 
+            mainMenuButtonColor, 
+            state_firstPuzzle, 
+            1),
+        new Button(createVector(windowWidth/3*2, windowHeight/2+mainMenuButtonSize), 
+            mainMenuButtonSize, 
+            mainMenuButtonSize, 
+            "2", 
+            mainMenuButtonTextSize, 
+            mainMenuButtonTextColor, 
+            mainMenuButtonColor, 
+            state_firstPuzzle, 
+            2)
+        )
+    } else if (currentState == state_firstPuzzle) {
+    var ball = Bodies.circle(windowWidth/2, 0, 30, {
+        isStatic: false
+        //airFriction: 1
+    });
 
-    // var ground = Bodies.rectangle(windowWidth/2, 5*windowHeight/6, windowWidth - 40, windowHeight/3, {
-    //     isStatic: true,
-    //     friction: 0.05
-    // });
+    var ground = Bodies.rectangle(windowWidth/2, 5*windowHeight/6, windowWidth - 40, windowHeight/3, {
+        isStatic: true,
+        friction: 0.05
+    });
 
-    // Composite.add(engine.world, [ball, ground]);
-    // Render.run(render);
-    // runner = Runner.create();
-    // Runner.run(runner, engine);
+    engine.world.gravity.y = 0.5
+    Composite.add(engine.world, [ball, ground]);
+    Render.run(render);
+    runner = Runner.create();
+    Runner.run(runner, engine);
+    }
 }
 
 function handleState(state) {
-    switch(state) {
-        case state_mainMenu:
-            mainMenu()
-            break;
-        case state_firstPuzzle:
-            break;
-        case state_firstTransition:
-            break;
-        case state_secondPuzzle:
-            break;
-        case state_secondTransition:
-            break;
-        case state_leaderboard:
-            break;
+    if (state == state_mainMenu) {
+        mainMenu()
+    } else if (state == state_firstPuzzle) {
+        firstPuzzle()
+        console.log(state)
+    } else if (state == state_firstTransition) {
+        return;
+    } else if (state == state_secondPuzzle) {
+        return;
+    } else if (state == state_secondTransition) {
+        return;
+    } else if (state == state_leaderboard) {
+        return;
     }
 }
 
 function draw() {
     clear()
+    console.log(currentState)
     handleState(currentState)
 }

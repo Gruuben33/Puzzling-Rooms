@@ -10,15 +10,21 @@ var Engine = Matter.Engine,
     Common = Matter.Common
 let engine, render, runner
 
-// palette
+// golbal variables
+let promptSize = 60
+let commonButtonTextSize = 45
+let buttons = []
+let playerCount = 0
+let players = []
+
+// main menu variables
+let titleSize = 160
 let mainMenuBackground = [135, 147, 132]
 let mainMenuText = [0, 232, 193]
-let mainMenuButtons = [217, 217, 217]
-
-// text Sizes
-let titleSize = 160
-let promtSize = 60
-let buttonTextSize = 45
+let mainMenuButtonColor = [217, 217, 217]
+let mainMenuButtonSize = 200
+let mainMenuButtonTextColor = [0, 0, 0]
+let mainMenuButtonTextSize = 96
 
 // states
 let state_mainMenu = 0
