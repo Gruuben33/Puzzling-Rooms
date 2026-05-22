@@ -1,5 +1,6 @@
 class Button {
-    constructor(position, width, height, text, textSize, textColor, color, nextState, playerCount = null) {
+    constructor(action, position, width, height, text, textSize, textColor, color) {
+        this.action = action
         this.position = position;
         this.width = width;
         this.height = height;
@@ -7,8 +8,6 @@ class Button {
         this.textSize = textSize;
         this.textColor = textColor;
         this.color = color;
-        this.nextState = nextState;
-        this.playerCount = playerCount;
     } 
 
     draw() {
@@ -22,18 +21,13 @@ class Button {
     checkClicked(mouseX, mouseY) {
         if (mouseX > this.position.x - this.width/2 && mouseX < this.position.x + this.width/2 &&
             mouseY > this.position.y - this.height/2 && mouseY < this.position.y + this.height/2) {
-                return true
+                this.action()
         }
     }
 }
 
 function mouseClicked() {
     buttons.forEach((button) => {
-        if (button.checkClicked(mouseX, mouseY)) {
-            if (button.playerCount) {
-                playerCount = button.playerCount
-            }
-            stateChange(button.nextState)
-        }
+        (button.checkClicked(mouseX, mouseY))
     })
 }

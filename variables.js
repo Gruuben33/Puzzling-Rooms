@@ -16,6 +16,7 @@ let commonButtonTextSize = 45
 let buttons = []
 let playerCount = 0
 let players = []
+let movementSpeed = 10
 
 // main menu variables
 let titleSize = 160
@@ -25,6 +26,8 @@ let mainMenuButtonColor = [217, 217, 217]
 let mainMenuButtonSize = 200
 let mainMenuButtonTextColor = [0, 0, 0]
 let mainMenuButtonTextSize = 96
+
+// first puzzle variables
 
 // states
 let state_mainMenu = 0

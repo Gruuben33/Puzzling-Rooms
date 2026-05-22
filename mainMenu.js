@@ -1,3 +1,36 @@
+function preStateChange(newPlayerCount) {
+    playerCount = newPlayerCount
+    stateChange(state_firstPuzzle)
+}
+
+function setupMainMenu() {
+    buttons = []
+    buttons.push(
+    new Button(
+        () => {preStateChange(1)},
+        createVector(windowWidth/3, windowHeight/2+mainMenuButtonSize), 
+        mainMenuButtonSize, 
+        mainMenuButtonSize, 
+        "1", 
+        mainMenuButtonTextSize, 
+        mainMenuButtonTextColor, 
+        mainMenuButtonColor, 
+        state_firstPuzzle, 
+        1),
+    new Button(
+        () => {preStateChange(2)},
+        createVector(windowWidth/3*2, windowHeight/2+mainMenuButtonSize), 
+        mainMenuButtonSize, 
+        mainMenuButtonSize, 
+        "2", 
+        mainMenuButtonTextSize, 
+        mainMenuButtonTextColor, 
+        mainMenuButtonColor, 
+        state_firstPuzzle, 
+        2)
+    )
+}
+
 function mainMenu() {
     background(mainMenuBackground)
     fill(mainMenuText)
@@ -5,9 +38,7 @@ function mainMenu() {
     text("Puzzling Rooms", windowWidth/2, windowHeight/2 - titleSize*1.5)
     textSize(promptSize)
     text("How many people are playing?", windowWidth/2, windowHeight/2 - promptSize)
-    // Display player number button (1 or 2)
     buttons.forEach((Button) => {
-        console.log(Button)
         Button.draw()
     })
 }
