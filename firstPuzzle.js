@@ -1,20 +1,33 @@
 function setupFirstPuzzle() {
+    buttons = []
+    buttons.push(
+        new Button(
+            () => {stateChange(state_mainMenu)},
+            createVector(windowWidth/2, windowHeight/2 ),
+            mainMenuButtonSize,
+            mainMenuButtonSize,
+            "mainMenu",
+            mainMenuButtonTextSize,
+            mainMenuButtonTextColor,
+            mainMenuButtonColor
+        )
+    )
     if (playerCount == 1) {
         players.push(
             new Player(
                 createVector(windowWidth/2, windowHeight/2),
-                "#0033FF",
+                player1Color,
                 40)
             )
     } else if (playerCount == 2) {
         players.push(
             new Player(
                 createVector(windowWidth/2, windowHeight/2),
-                "#0033FF",
+                player1Color,
                 40),
             new Player(
                 createVector(windowWidth/2, windowHeight/2 - 100),
-                "#FF0000",
+                player2Color,
                 40)
             )
     }
@@ -27,11 +40,7 @@ function setupFirstPuzzle() {
         friction: 0.05
     });
 
-    engine.world.gravity.y = 0.5
     Composite.add(engine.world, ground);
-    Render.run(render);
-    runner = Runner.create();
-    Runner.run(runner, engine);
 }
 
 function firstPuzzle() {
@@ -47,4 +56,7 @@ function firstPuzzle() {
     if (keyIsDown(37)) {
         players[0].move(-1)
     }
+    buttons.forEach((Button) => {
+        Button.draw()
+    })
 }

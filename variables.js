@@ -20,14 +20,16 @@ let movementSpeed = 10
 
 // main menu variables
 let titleSize = 160
-let mainMenuBackground = [135, 147, 132]
-let mainMenuText = [0, 232, 193]
-let mainMenuButtonColor = [217, 217, 217]
+let mainMenuBackground = "#879384"
+let mainMenuText = "#00E8C1"
+let mainMenuButtonColor = "#D9D9D9"
 let mainMenuButtonSize = 200
-let mainMenuButtonTextColor = [0, 0, 0]
+let mainMenuButtonTextColor = "#000000"
 let mainMenuButtonTextSize = 96
 
-// first puzzle variables
+// puzzle variables
+let player1Color = "#0033FF"
+let player2Color = "#FF0000"
 
 // states
 let state_mainMenu = 0

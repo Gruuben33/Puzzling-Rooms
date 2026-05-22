@@ -16,6 +16,10 @@ function setup() {
     textAlign(CENTER, CENTER)
     rectMode(CENTER, CENTER)
     stateChange(state_mainMenu)
+
+    // Render.run(render);
+    runner = Runner.create();
+    Runner.run(runner, engine);
 }
 
 function stateChange(newState) {
@@ -28,6 +32,7 @@ function stateChange(newState) {
 }
 
 function handleState(state) {
+    Render.world(render)
     if (state == state_mainMenu) {
         mainMenu()
     } else if (state == state_firstPuzzle) {
@@ -46,4 +51,5 @@ function handleState(state) {
 function draw() {
     clear()
     handleState(currentState)
+    console.log(currentState)
 }
