@@ -1,0 +1,88 @@
+function leavePuzzle(nextState) {
+    Composite.clear(engine.world, true)
+    players = []
+    buttons = []
+    stateChange(nextState)
+}
+
+function setupPuzzle() {
+    buttons = []
+    buttons.push(
+        new Button(
+            () => {leavePuzzle(state_mainMenu)},
+            createVector(pauseButtonWidth, pauseButtonHeight),
+            pauseButtonWidth,
+            pauseButtonHeight,
+            "Pause",
+            pauseButtonTextSize,
+            mainMenuButtonTextColor,
+            mainMenuButtonColor
+        )
+    )
+    if (playerCount == 1) {
+        players.push(
+            new Player(
+                createVector(windowWidth/2, windowHeight/2),
+                player1Color,
+                playerSize,
+                playerDensity
+            )
+        )
+    } else if (playerCount == 2) {
+        players.push(
+            new Player(
+                createVector(windowWidth/2, windowHeight/2),
+                player1Color,
+                playerSize,
+                playerDensity
+            ),
+            new Player(
+                createVector(windowWidth/2, windowHeight/2 - 100),
+                player2Color,
+                playerSize,
+                playerDensity
+            )
+            )
+    }
+    players.forEach((Player) => {
+        Player.addToComposite(engine.world)
+    })
+    timeSincePuzzleStart = 0
+    puzzleStartTime = engine.timing.timestamp/1000
+}
+
+function start() {
+    now = engine.timing.timestamp/1000
+    secondsSincePuzzleStart = Math.round((now - puzzleStartTime) * 100) / 100
+    if (secondsSincePuzzleStart >= 5.00) {
+        play()
+    } else {
+        displayControls()
+    }
+}
+
+function play() {
+    if (keyIsDown(87) && engine.timing.timeScale > 0) {
+        engine.timing.timeScale -= 0.01
+    }
+    if (keyIsDown(83) && engine.timing.timeScale < 1) {
+        engine.timing.timeScale += 0.01
+    }
+    if (keyIsDown(39) && keyIsDown(37)) {
+        players[0].move(null)
+    } else if (keyIsDown(39)) {
+        players[0].move(1)
+    } else if (keyIsDown(37)) {
+        players[0].move(-1)
+    }
+    buttons.forEach((Button) => {
+        Button.draw()
+    })
+}
+
+function displayControls() {
+    console.log(secondsSincePuzzleStart)
+    buttons.forEach((Button) => {
+        Button.draw()
+    })
+}

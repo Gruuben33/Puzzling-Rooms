@@ -1,77 +1,58 @@
-function leavePuzzle(nextState) {
-    Composite.clear(engine.world, true)
-    players = []
-    buttons = []
-    stateChange(nextState)
-}
-
 function setupFirstPuzzle() {
-    buttons = []
-    buttons.push(
-        new Button(
-            () => {leavePuzzle(state_mainMenu)},
-            createVector(pauseButtonWidth, pauseButtonHeight),
-            pauseButtonWidth,
-            pauseButtonHeight,
-            "Pause",
-            pauseButtonTextSize,
-            mainMenuButtonTextColor,
-            mainMenuButtonColor
-        )
-    )
-    if (playerCount == 1) {
-        players.push(
-            new Player(
-                createVector(windowWidth/2, windowHeight/2),
-                player1Color,
-                playerSize,
-                playerDensity
-            )
-        )
-    } else if (playerCount == 2) {
-        players.push(
-            new Player(
-                createVector(windowWidth/2, windowHeight/2),
-                player1Color,
-                playerSize,
-                playerDensity
-            ),
-            new Player(
-                createVector(windowWidth/2, windowHeight/2 - 100),
-                player2Color,
-                playerSize,
-                playerDensity
-            )
-            )
-    }
-    players.forEach((Player) => {
-        Player.addToComposite(engine.world)
-    })
-
-    var ground = Bodies.rectangle(windowWidth/2, 5*windowHeight/6, windowWidth - 300, windowHeight/3, {
-        isStatic: true,
-        friction: 0.05
-    });
-
-    Composite.add(engine.world, ground);
+    setupPuzzle()
+    setupFirstPuzzleElements()
 }
 
-function firstPuzzle() {
-    if (keyIsDown(87) && engine.timing.timeScale > 0) {
-        engine.timing.timeScale -= 0.01
-    }
-    if (keyIsDown(83) && engine.timing.timeScale < 1) {
-        engine.timing.timeScale += 0.01
-    }
-    if (keyIsDown(39) && keyIsDown(37)) {
-        players[0].move(null)
-    } else if (keyIsDown(39)) {
-        players[0].move(1)
-    } else if (keyIsDown(37)) {
-        players[0].move(-1)
-    }
-    buttons.forEach((Button) => {
-        Button.draw()
+function setupFirstPuzzleElements() {
+    // 9 rectangles, one seesaw, one triangle, complete puzzle square and puzzle ball to touch complete puzzle square
+    let ground1 = Bodies.rectangle(275/2, windowHeight-125/2, 275, 125, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
     })
-    console.log(players[0].body.position.x)
+    let puzzleSquare = Bodies.rectangle(400, windowHeight-50, 250, 100, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#16BC00",
+            lineWidth: 0
+        }
+    })
+    let ground2 = Bodies.rectangle(1220, windowHeight-125/2, 1390, 125, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let triangle = Bodies.polygon(1350, windowHeight-160, 3, 75, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    Body.rotate(triangle, Math.PI/2)
+    let rightLedge = Bodies.rectangle(windowWidth-150, 600, 300, 150, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let rightOverHang = Bodies.rectangle(windowWidth-150, 175, 300, 350, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    Composite.add(engine.world, [ground1, puzzleSquare, ground2, triangle, rightLedge, rightOverHang]);
 }

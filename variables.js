@@ -36,6 +36,11 @@ let pauseButtonHeight = 100
 let playerSize = 20
 let playerDensity = 0.005
 
+// timer variables
+let secondsSincePuzzleStart = 0
+let puzzleStartTime = 0
+let now = 0
+
 // states
 let state_mainMenu = 0
 let state_firstPuzzle = 1

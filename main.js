@@ -15,7 +15,7 @@ function setup() {
     frameRate(60)
     textAlign(CENTER, CENTER)
     rectMode(CENTER, CENTER)
-    stateChange(state_mainMenu)
+    stateChange(state_firstPuzzle)
 
     // Render.run(render);
     runner = Runner.create();
@@ -36,11 +36,11 @@ function handleState(state) {
     if (state == state_mainMenu) {
         mainMenu()
     } else if (state == state_firstPuzzle) {
-        firstPuzzle()
+        start() // gameplay is same, setup is different
     } else if (state == state_firstTransition) {
         return;
     } else if (state == state_secondPuzzle) {
-        return;
+        start() // gameplay is same, setup is different
     } else if (state == state_secondTransition) {
         return;
     } else if (state == state_leaderboard) {
@@ -51,4 +51,5 @@ function handleState(state) {
 function draw() {
     clear()
     handleState(currentState)
+    // console.log(mouseX, mouseY)
 }
