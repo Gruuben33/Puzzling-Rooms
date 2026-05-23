@@ -17,6 +17,7 @@ let buttons = []
 let playerCount = 0
 let players = []
 let movementSpeed = 0.1
+let jumpStrength = 0.01
 
 // main menu variables
 let titleSize = 160

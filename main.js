@@ -13,9 +13,10 @@ function setup() {
 
     createCanvas(windowWidth, windowHeight, render.canvas)
     frameRate(60)
+    noStroke()
     textAlign(CENTER, CENTER)
     rectMode(CENTER, CENTER)
-    stateChange(state_firstPuzzle)
+    stateChange(state_mainMenu)
 
     // Render.run(render);
     runner = Runner.create();

@@ -54,5 +54,68 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    Composite.add(engine.world, [ground1, puzzleSquare, ground2, triangle, rightLedge, rightOverHang]);
+    let leftLedge = Bodies.rectangle(75, 400, 150, 175, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let seesaw = Bodies.rectangle(600, 490, 800, 25, {
+        density: 0.001,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let pivot = Bodies.circle(600, 490, 0, {
+        isStatic: true,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0,
+            visible: false
+        }
+    })
+    let constraint = Constraint.create({
+        bodyA: seesaw,
+        pointA: {x: 0, y: 0},
+        bodyB: pivot,
+        pointB: {x: 0, y: 0},
+        stiffness: 1,
+        length: 0
+    })
+    let slit1 = Bodies.rectangle(300, 600, 150, 25, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let slit2 = Bodies.rectangle(windowWidth/2, 650, 150, 25, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let slit3 = Bodies.rectangle(1360, 430, 150, 25, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    let bigPlatform = Bodies.rectangle(900, 250, 1100, 100, {
+        isStatic: true,
+        friction: 0.05,
+        render: {
+            fillStyle: "#6C6A6A",
+            lineWidth: 0
+        }
+    })
+    Composite.add(engine.world, [ground1, puzzleSquare, ground2, triangle, rightLedge, rightOverHang, leftLedge, seesaw, pivot, constraint, slit1, slit2, slit3, bigPlatform]);
 }

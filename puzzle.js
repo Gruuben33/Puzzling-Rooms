@@ -22,7 +22,7 @@ function setupPuzzle() {
     if (playerCount == 1) {
         players.push(
             new Player(
-                createVector(windowWidth/2, windowHeight/2),
+                createVector(windowWidth/2 - 70, windowHeight/2 - 70),
                 player1Color,
                 playerSize,
                 playerDensity
@@ -31,13 +31,13 @@ function setupPuzzle() {
     } else if (playerCount == 2) {
         players.push(
             new Player(
-                createVector(windowWidth/2, windowHeight/2),
+                createVector(windowWidth/2 - 70, windowHeight/2 - 70),
                 player1Color,
                 playerSize,
                 playerDensity
             ),
             new Player(
-                createVector(windowWidth/2, windowHeight/2 - 100),
+                createVector(windowWidth/2 - 70, windowHeight/2 - 100 - 70),
                 player2Color,
                 playerSize,
                 playerDensity
@@ -54,7 +54,7 @@ function setupPuzzle() {
 function start() {
     now = engine.timing.timestamp/1000
     secondsSincePuzzleStart = Math.round((now - puzzleStartTime) * 100) / 100
-    if (secondsSincePuzzleStart >= 5.00) {
+    if (secondsSincePuzzleStart >= 0.00) {
         play()
     } else {
         displayControls()
@@ -74,6 +74,9 @@ function play() {
         players[0].move(1)
     } else if (keyIsDown(37)) {
         players[0].move(-1)
+    }
+    if (keyIsDown(38)) {
+        players[0].jump()
     }
     buttons.forEach((Button) => {
         Button.draw()

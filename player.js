@@ -31,4 +31,11 @@ class Player {
             })
         }
     }
+
+    jump() {
+        Body.applyForce(this.body, this.body.position, {
+            x: 0,
+            y: -jumpStrength
+        })
+    }
 }
