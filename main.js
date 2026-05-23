@@ -51,5 +51,4 @@ function handleState(state) {
 function draw() {
     clear()
     handleState(currentState)
-    console.log(currentState)
 }

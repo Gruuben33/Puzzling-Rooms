@@ -10,13 +10,13 @@ var Engine = Matter.Engine,
     Common = Matter.Common
 let engine, render, runner
 
-// golbal variables
+// global variables
 let promptSize = 60
 let commonButtonTextSize = 45
 let buttons = []
 let playerCount = 0
 let players = []
-let movementSpeed = 10
+let movementSpeed = 0.1
 
 // main menu variables
 let titleSize = 160
@@ -30,6 +30,11 @@ let mainMenuButtonTextSize = 96
 // puzzle variables
 let player1Color = "#0033FF"
 let player2Color = "#FF0000"
+let pauseButtonTextSize = 40
+let pauseButtonWidth = 200
+let pauseButtonHeight = 100
+let playerSize = 20
+let playerDensity = 0.005
 
 // states
 let state_mainMenu = 0

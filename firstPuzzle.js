@@ -1,13 +1,20 @@
+function leavePuzzle(nextState) {
+    Composite.clear(engine.world, true)
+    players = []
+    buttons = []
+    stateChange(nextState)
+}
+
 function setupFirstPuzzle() {
     buttons = []
     buttons.push(
         new Button(
-            () => {stateChange(state_mainMenu)},
-            createVector(windowWidth/2, windowHeight/2 ),
-            mainMenuButtonSize,
-            mainMenuButtonSize,
-            "mainMenu",
-            mainMenuButtonTextSize,
+            () => {leavePuzzle(state_mainMenu)},
+            createVector(pauseButtonWidth, pauseButtonHeight),
+            pauseButtonWidth,
+            pauseButtonHeight,
+            "Pause",
+            pauseButtonTextSize,
             mainMenuButtonTextColor,
             mainMenuButtonColor
         )
@@ -17,18 +24,24 @@ function setupFirstPuzzle() {
             new Player(
                 createVector(windowWidth/2, windowHeight/2),
                 player1Color,
-                40)
+                playerSize,
+                playerDensity
             )
+        )
     } else if (playerCount == 2) {
         players.push(
             new Player(
                 createVector(windowWidth/2, windowHeight/2),
                 player1Color,
-                40),
+                playerSize,
+                playerDensity
+            ),
             new Player(
                 createVector(windowWidth/2, windowHeight/2 - 100),
                 player2Color,
-                40)
+                playerSize,
+                playerDensity
+            )
             )
     }
     players.forEach((Player) => {
@@ -50,13 +63,15 @@ function firstPuzzle() {
     if (keyIsDown(83) && engine.timing.timeScale < 1) {
         engine.timing.timeScale += 0.01
     }
-    if (keyIsDown(39)) {
+    if (keyIsDown(39) && keyIsDown(37)) {
+        players[0].move(null)
+    } else if (keyIsDown(39)) {
         players[0].move(1)
-    }
-    if (keyIsDown(37)) {
+    } else if (keyIsDown(37)) {
         players[0].move(-1)
     }
     buttons.forEach((Button) => {
         Button.draw()
     })
+    console.log(players[0].body.position.x)
 }

@@ -1,4 +1,4 @@
-function preStateChange(newPlayerCount) {
+function leaveMainMenu(newPlayerCount) {
     playerCount = newPlayerCount
     stateChange(state_firstPuzzle)
 }
@@ -7,7 +7,7 @@ function setupMainMenu() {
     buttons = []
     buttons.push(
     new Button(
-        () => {preStateChange(1)},
+        () => {leaveMainMenu(1)},
         createVector(windowWidth/3, windowHeight/2+mainMenuButtonSize), 
         mainMenuButtonSize, 
         mainMenuButtonSize, 
@@ -18,7 +18,7 @@ function setupMainMenu() {
         state_firstPuzzle, 
         1),
     new Button(
-        () => {preStateChange(2)},
+        () => {leaveMainMenu(2)},
         createVector(windowWidth/3*2, windowHeight/2+mainMenuButtonSize), 
         mainMenuButtonSize, 
         mainMenuButtonSize, 
