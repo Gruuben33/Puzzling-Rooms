@@ -37,15 +37,20 @@ class Player {
         if (groundContacts > 0) {
             Body.applyForce(this.body, this.body.position, {
                 x: 0,
-                y: -jumpStrength * this.body.mass * 0.00075
+                y: -jumpStrength * this.body.mass * 0.0025
             })
+            console.log(this.body.mass, jumpStrength, -jumpStrength * this.body.mass * 0.0025)
         }
+        Body.setVelocity(this.body, {
+            x: this.body.velocity.x,
+            y: Common.clamp(this.body.velocity.y, -jumpStrength * this.body.mass * 0.005, jumpStrength * this.body.mass * 0.005)
+        })
     }
 
     descendingDark() {
         Body.applyForce(this.body, this.body.position, {
             x: 0,
-            y: downStrength * this.body.mass * 0.00075
+            y: downStrength * this.body.mass * 0.0025
         });
     }
 }

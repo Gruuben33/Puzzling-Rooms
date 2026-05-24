@@ -9,10 +9,16 @@ let collisionHandlersRegistered = false
 let jumpKeyPreviouslyDown = false
 
 function isGroundContact(pair, Player) {
-    const playerBody = Player.body
-    const otherBody = pair.bodyA === playerBody ? pair.bodyB : pair.bodyA
-    if (otherBody === puzzleBall) return false
-    return true
+    const playerBody = Player.body;
+    const otherBody = pair.bodyA === playerBody ? pair.bodyB : pair.bodyA;
+    if (otherBody === puzzleBall) return false;
+
+    const normal = pair.bodyA === playerBody
+        ? pair.collision.normal
+        : { x: -pair.collision.normal.x, y: -pair.collision.normal.y };
+
+    // Only return true when normal is pointing upward (player is on top)
+    return normal.y < -0.9;
 }
 
 function setupCollisionHandlers() {
