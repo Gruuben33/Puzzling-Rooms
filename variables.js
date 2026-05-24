@@ -5,6 +5,7 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Composite = Matter.Composite,
     Composites = Matter.Composites,
+    Collision = Matter.Collision,
     Constraint = Matter.Constraint,
     Events = Matter.Events,
     Common = Matter.Common
@@ -17,7 +18,8 @@ let buttons = []
 let playerCount = 0
 let players = []
 let movementSpeed = 0.1
-let jumpStrength = 0.01
+let jumpStrength = 12
+let downStrength = 20
 
 // main menu variables
 let titleSize = 160
@@ -36,6 +38,11 @@ let pauseButtonWidth = 200
 let pauseButtonHeight = 100
 let playerSize = 20
 let playerDensity = 0.005
+let puzzleBall
+let puzzleSquare
+let boundaries = []
+let groundContacts = 0;
+
 
 // timer variables
 let secondsSincePuzzleStart = 0

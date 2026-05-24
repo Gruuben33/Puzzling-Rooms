@@ -13,7 +13,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let puzzleSquare = Bodies.rectangle(400, windowHeight-50, 250, 100, {
+    puzzleSquare = Bodies.rectangle(400, windowHeight-50, 250, 100, {
         isStatic: true,
         friction: 0.05,
         render: {
@@ -117,5 +117,15 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    Composite.add(engine.world, [ground1, puzzleSquare, ground2, triangle, rightLedge, rightOverHang, leftLedge, seesaw, pivot, constraint, slit1, slit2, slit3, bigPlatform]);
+    puzzleBall = Bodies.circle(1400, 200, playerSize*3, {
+        //density: 100,
+        mass: 100,
+        friction: 0,
+        airFriction: 0,
+        render: {
+            fillStyle: "#16BC00",
+            lineWidth: 0
+        }
+    })
+    Composite.add(engine.world, [boundaries[0], boundaries[1], boundaries[2], ground1, puzzleSquare, ground2, triangle, rightLedge, rightOverHang, leftLedge, seesaw, pivot, constraint, slit1, slit2, slit3, bigPlatform, puzzleBall]);
 }

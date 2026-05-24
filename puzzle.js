@@ -75,12 +75,37 @@ function play() {
     } else if (keyIsDown(37)) {
         players[0].move(-1)
     }
+
+    players.forEach((Player) => {
+        Events.on(engine, 'collisionStart', (event) => {
+            event.pairs.forEach(pair => {
+                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
+                    groundContacts++;
+                }
+            });
+        });
+
+        Events.on(engine, 'collisionEnd', (event) => {
+            event.pairs.forEach(pair => {
+                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
+                    groundContacts--;
+                }
+            });
+        });
+    })
+
     if (keyIsDown(38)) {
         players[0].jump()
+    }
+    if (keyIsDown(40)) {
+        players[0].descendingDark()
     }
     buttons.forEach((Button) => {
         Button.draw()
     })
+    if (Collision.collides(puzzleBall, puzzleSquare)) {
+        leavePuzzle(state_mainMenu)
+    }
 }
 
 function displayControls() {

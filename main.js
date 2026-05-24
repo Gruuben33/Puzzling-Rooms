@@ -18,6 +18,10 @@ function setup() {
     rectMode(CENTER, CENTER)
     stateChange(state_mainMenu)
 
+    const ceiling = Bodies.rectangle(windowWidth/2, -1, windowWidth, 2, { isStatic: true });
+    const wallL   = Bodies.rectangle(-25, windowHeight/2, 50, windowHeight, { isStatic: true });
+    const wallR   = Bodies.rectangle(windowWidth + 25, windowHeight/2, 50, windowHeight, { isStatic: true });
+    boundaries = [ceiling, wallL, wallR]
     // Render.run(render);
     runner = Runner.create();
     Runner.run(runner, engine);
