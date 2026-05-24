@@ -35,11 +35,21 @@ class Player {
 
     jump() {
         if (groundContacts > 0) {
-            Body.setVelocity(this.body, { x: 0, y: -jumpStrength});
+            Body.applyForce(this.body, this.body.position, {
+                x: 0,
+                y: -jumpStrength * this.body.mass * 0.002
+            })
         }
+        Body.setVelocity(this.body, {
+            x: this.body.velocity.x,
+            y: Common.clamp(this.body.velocity.y, -jumpStrength, jumpStrength)
+        })
     }
 
     descendingDark() {
-        Body.setVelocity(this.body, { x: 0, y: downStrength});
+        Body.applyForce(this.body, this.body.position, {
+            x: 0,
+            y: downStrength * this.body.mass * 0.002
+        });
     }
 }

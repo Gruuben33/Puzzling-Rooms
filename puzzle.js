@@ -5,6 +5,48 @@ function leavePuzzle(nextState) {
     stateChange(nextState)
 }
 
+let collisionHandlersRegistered = false
+let jumpKeyPreviouslyDown = false
+
+function isGroundContact(pair, Player) {
+    const playerBody = Player.body
+    const otherBody = pair.bodyA === playerBody ? pair.bodyB : pair.bodyA
+    if (otherBody === puzzleBall) return false
+    const normal = pair.collision.normal
+    const playerIsA = pair.bodyA === playerBody
+    const verticalSupport = playerIsA ? normal.y > 0.5 : normal.y < -0.5
+    return verticalSupport
+}
+
+function setupCollisionHandlers() {
+    if (collisionHandlersRegistered) return
+    collisionHandlersRegistered = true
+
+    Events.on(engine, 'collisionStart', (event) => {
+        event.pairs.forEach(pair => {
+            players.forEach((Player) => {
+                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
+                    if (isGroundContact(pair, Player)) {
+                        groundContacts++
+                    }
+                }
+            })
+        })
+    })
+
+    Events.on(engine, 'collisionEnd', (event) => {
+        event.pairs.forEach(pair => {
+            players.forEach((Player) => {
+                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
+                    if (isGroundContact(pair, Player)) {
+                        groundContacts = Math.max(0, groundContacts - 1)
+                    }
+                }
+            })
+        })
+    })
+}
+
 function setupPuzzle() {
     buttons = []
     buttons.push(
@@ -47,6 +89,8 @@ function setupPuzzle() {
     players.forEach((Player) => {
         Player.addToComposite(engine.world)
     })
+    groundContacts = 0
+    setupCollisionHandlers()
     timeSincePuzzleStart = 0
     puzzleStartTime = engine.timing.timestamp/1000
 }
@@ -76,27 +120,12 @@ function play() {
         players[0].move(-1)
     }
 
-    players.forEach((Player) => {
-        Events.on(engine, 'collisionStart', (event) => {
-            event.pairs.forEach(pair => {
-                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
-                    groundContacts++;
-                }
-            });
-        });
-
-        Events.on(engine, 'collisionEnd', (event) => {
-            event.pairs.forEach(pair => {
-                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
-                    groundContacts--;
-                }
-            });
-        });
-    })
-
-    if (keyIsDown(38)) {
+    const jumpDown = keyIsDown(38)
+    if (jumpDown && !jumpKeyPreviouslyDown) {
         players[0].jump()
     }
+    jumpKeyPreviouslyDown = jumpDown
+
     if (keyIsDown(40)) {
         players[0].descendingDark()
     }

@@ -17,9 +17,9 @@ let commonButtonTextSize = 45
 let buttons = []
 let playerCount = 0
 let players = []
-let movementSpeed = 0.1
-let jumpStrength = 12
-let downStrength = 20
+let movementSpeed = 1
+let jumpStrength = 20
+let downStrength = 0.1
 
 // main menu variables
 let titleSize = 160
@@ -37,7 +37,7 @@ let pauseButtonTextSize = 40
 let pauseButtonWidth = 200
 let pauseButtonHeight = 100
 let playerSize = 20
-let playerDensity = 0.005
+let playerDensity = 0.1
 let puzzleBall
 let puzzleSquare
 let boundaries = []

@@ -31,7 +31,7 @@ function setupFirstPuzzleElements() {
     })
     let triangle = Bodies.polygon(1350, windowHeight-160, 3, 75, {
         isStatic: true,
-        friction: 0.05,
+        friction: PI,
         render: {
             fillStyle: "#6C6A6A",
             lineWidth: 0
