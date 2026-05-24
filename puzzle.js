@@ -12,10 +12,7 @@ function isGroundContact(pair, Player) {
     const playerBody = Player.body
     const otherBody = pair.bodyA === playerBody ? pair.bodyB : pair.bodyA
     if (otherBody === puzzleBall) return false
-    const normal = pair.collision.normal
-    const playerIsA = pair.bodyA === playerBody
-    const verticalSupport = playerIsA ? normal.y > 0.5 : normal.y < -0.5
-    return verticalSupport
+    return true
 }
 
 function setupCollisionHandlers() {
@@ -120,12 +117,9 @@ function play() {
         players[0].move(-1)
     }
 
-    const jumpDown = keyIsDown(38)
-    if (jumpDown && !jumpKeyPreviouslyDown) {
+    if (keyIsDown(38)) {
         players[0].jump()
     }
-    jumpKeyPreviouslyDown = jumpDown
-
     if (keyIsDown(40)) {
         players[0].descendingDark()
     }

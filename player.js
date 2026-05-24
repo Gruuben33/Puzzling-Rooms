@@ -7,7 +7,7 @@ class Player {
         this.body = Bodies.circle(this.position.x, this.position.y, this.size, {
             restitution: 0.01,
             isStatic: false,
-            friction: 0,
+            friction: 0.4,
             airFriction: 0.02,
             density: this.density,
             render: {
@@ -37,19 +37,15 @@ class Player {
         if (groundContacts > 0) {
             Body.applyForce(this.body, this.body.position, {
                 x: 0,
-                y: -jumpStrength * this.body.mass * 0.002
+                y: -jumpStrength * this.body.mass * 0.00075
             })
         }
-        Body.setVelocity(this.body, {
-            x: this.body.velocity.x,
-            y: Common.clamp(this.body.velocity.y, -jumpStrength, jumpStrength)
-        })
     }
 
     descendingDark() {
         Body.applyForce(this.body, this.body.position, {
             x: 0,
-            y: downStrength * this.body.mass * 0.002
+            y: downStrength * this.body.mass * 0.00075
         });
     }
 }
