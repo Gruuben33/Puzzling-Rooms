@@ -101,7 +101,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let slit3 = Bodies.rectangle(1380, 430, 150, 25, {
+    let slit3 = Bodies.rectangle(1370, 430, 150, 25, {
         isStatic: true,
         friction: 0.05,
         render: {
@@ -109,7 +109,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let bigPlatform = Bodies.rectangle(900, 250, 1130, 70, {
+    let bigPlatform = Bodies.rectangle(880, 250, 1100, 70, {
         isStatic: true,
         friction: 0.05,
         render: {
@@ -117,7 +117,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    puzzleBall = Bodies.circle(1400, 200, playerSize*3, {
+    puzzleBall = Bodies.circle(1200, 200, playerSize*3, {
         mass: 100,
         friction: 0,
         frictionAir: 0.02,

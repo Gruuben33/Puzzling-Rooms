@@ -29,11 +29,9 @@ function setup() {
 
 function stateChange(newState) {
     currentState = newState;
-    if (currentState == state_mainMenu) {
-        setupMainMenu()
-    } else if (currentState == state_firstPuzzle) {
-        setupFirstPuzzle()
-    }
+    if (currentState == state_mainMenu)                 setupMainMenu()
+    else if (currentState == state_firstPuzzle)         setupFirstPuzzle()
+    else if (currentState == state_firstPuzzleComplete) setupFirstPuzzleComplete()
 }
 
 function handleState(state) {
@@ -42,8 +40,8 @@ function handleState(state) {
         mainMenu()
     } else if (state == state_firstPuzzle) {
         start() // gameplay is same, setup is different
-    } else if (state == state_firstTransition) {
-        return;
+    } else if (state == state_firstPuzzleComplete) {
+        firstPuzzleComplete()
     } else if (state == state_secondPuzzle) {
         start() // gameplay is same, setup is different
     } else if (state == state_secondTransition) {

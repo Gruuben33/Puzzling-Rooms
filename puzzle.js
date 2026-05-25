@@ -72,7 +72,7 @@ function setupPuzzle() {
 function start() {
     now = engine.timing.timestamp/1000
     secondsSincePuzzleStart = Math.round((now - puzzleStartTime) * 100) / 100
-    if (secondsSincePuzzleStart >= 0.00) {
+    if (secondsSincePuzzleStart >= displayTime) {
         play()
     } else {
         displayControls()
@@ -107,12 +107,11 @@ function play() {
         Button.draw()
     })
     if (Collision.collides(puzzleBall, puzzleSquare)) {
-        leavePuzzle(state_mainMenu)
+        leavePuzzle(currentState+1)
     }
 }
 
 function displayControls() {
-    console.log(secondsSincePuzzleStart)
     buttons.forEach((Button) => {
         Button.draw()
     })

@@ -47,15 +47,17 @@ let jumpStrength = 25
 let downStrength = 0.1
 
 // timer variables
+let displayTime = 2.00
 let secondsSincePuzzleStart = 0
 let puzzleStartTime = 0
 let now = 0
+let lastLevelTime = 0
 
 // states
-let state_mainMenu = 0
-let state_firstPuzzle = 1
-let state_firstTransition = 2
-let state_secondPuzzle = 3
-let state_secondTransition = 4
-let state_leaderboard = 5
+const state_mainMenu = 0
+const state_firstPuzzle = 1
+const state_firstPuzzleComplete = 2
+const state_secondPuzzle = 3
+const state_secondTransition = 4
+const state_leaderboard = 5
 let currentState = state_mainMenu
