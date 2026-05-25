@@ -54,7 +54,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let leftLedge = Bodies.rectangle(75, 400, 150, 175, {
+    let leftLedge = Bodies.rectangle(75, 450, 150, 200, {
         isStatic: true,
         friction: 0.05,
         render: {
@@ -118,7 +118,7 @@ function setupFirstPuzzleElements() {
         }
     })
     puzzleBall = Bodies.circle(1200, 200, playerSize*3, {
-        mass: 100,
+        mass: 350,
         friction: 0,
         frictionAir: 0.02,
         restitution: 0,

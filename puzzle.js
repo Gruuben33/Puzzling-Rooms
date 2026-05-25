@@ -71,7 +71,7 @@ function setupPuzzle() {
 
 function start() {
     now = engine.timing.timestamp/1000
-    secondsSincePuzzleStart = Math.round((now - puzzleStartTime) * 100) / 100
+    secondsSincePuzzleStart = Math.round((now - puzzleStartTime)*100)/100//.toFixed(2)
     if (secondsSincePuzzleStart >= displayTime) {
         play()
     } else {

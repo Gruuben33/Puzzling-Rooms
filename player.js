@@ -50,7 +50,7 @@ class Player {
     descendingDark() {
         Body.applyForce(this.body, this.body.position, {
             x: 0,
-            y: downStrength * this.body.mass * 0.0025
+            y: downStrength * this.body.mass * 0.05
         });
     }
 }
