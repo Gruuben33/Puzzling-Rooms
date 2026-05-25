@@ -34,17 +34,17 @@ class Player {
     }
 
     jump() {
-        if (groundContacts > 0) {
+        if (isOnGround(players[0]) && jumpCooldown <= 0) {
             Body.applyForce(this.body, this.body.position, {
                 x: 0,
                 y: -jumpStrength * this.body.mass * 0.0025
-            })
-            console.log(this.body.mass, jumpStrength, -jumpStrength * this.body.mass * 0.0025)
+            });
+            jumpCooldown = 10;
         }
         Body.setVelocity(this.body, {
             x: this.body.velocity.x,
             y: Common.clamp(this.body.velocity.y, -jumpStrength * this.body.mass * 0.005, jumpStrength * this.body.mass * 0.005)
-        })
+        });
     }
 
     descendingDark() {

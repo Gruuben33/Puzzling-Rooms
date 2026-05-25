@@ -17,9 +17,6 @@ let commonButtonTextSize = 45
 let buttons = []
 let playerCount = 0
 let players = []
-let movementSpeed = 1
-let jumpStrength = 20
-let downStrength = 0.1
 
 // main menu variables
 let titleSize = 160
@@ -36,13 +33,18 @@ let player2Color = "#FF0000"
 let pauseButtonTextSize = 40
 let pauseButtonWidth = 200
 let pauseButtonHeight = 100
-let playerSize = 20
-let playerDensity = 0.1
 let puzzleBall
 let puzzleSquare
 let boundaries = []
 let groundContacts = 0;
 
+// player variables
+let playerSize = 20
+let playerDensity = 0.1
+let jumpCooldown = 0
+let movementSpeed = 1
+let jumpStrength = 25
+let downStrength = 0.1
 
 // timer variables
 let secondsSincePuzzleStart = 0

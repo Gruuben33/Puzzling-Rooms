@@ -5,49 +5,22 @@ function leavePuzzle(nextState) {
     stateChange(nextState)
 }
 
-let collisionHandlersRegistered = false
 let jumpKeyPreviouslyDown = false
 
-function isGroundContact(pair, Player) {
+function isOnGround(Player) {
     const playerBody = Player.body;
-    const otherBody = pair.bodyA === playerBody ? pair.bodyB : pair.bodyA;
-    if (otherBody === puzzleBall) return false;
+    const activePairs = engine.pairs.list.filter(p => p.isActive);
+    
+    return activePairs.some(pair => {
+        if (pair.bodyA !== playerBody && pair.bodyB !== playerBody) return false;
+        if (pair.bodyA === puzzleBall || pair.bodyB === puzzleBall) return false;
 
-    const normal = pair.bodyA === playerBody
-        ? pair.collision.normal
-        : { x: -pair.collision.normal.x, y: -pair.collision.normal.y };
+        const normal = pair.bodyA === playerBody
+            ? pair.collision.normal
+            : { x: -pair.collision.normal.x, y: -pair.collision.normal.y };
 
-    // Only return true when normal is pointing upward (player is on top)
-    return normal.y < -0.9;
-}
-
-function setupCollisionHandlers() {
-    if (collisionHandlersRegistered) return
-    collisionHandlersRegistered = true
-
-    Events.on(engine, 'collisionStart', (event) => {
-        event.pairs.forEach(pair => {
-            players.forEach((Player) => {
-                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
-                    if (isGroundContact(pair, Player)) {
-                        groundContacts++
-                    }
-                }
-            })
-        })
-    })
-
-    Events.on(engine, 'collisionEnd', (event) => {
-        event.pairs.forEach(pair => {
-            players.forEach((Player) => {
-                if (pair.bodyA === Player.body || pair.bodyB === Player.body) {
-                    if (isGroundContact(pair, Player)) {
-                        groundContacts = Math.max(0, groundContacts - 1)
-                    }
-                }
-            })
-        })
-    })
+        return normal.y < -0.9;
+    });
 }
 
 function setupPuzzle() {
@@ -87,13 +60,11 @@ function setupPuzzle() {
                 playerSize,
                 playerDensity
             )
-            )
+        )
     }
     players.forEach((Player) => {
         Player.addToComposite(engine.world)
     })
-    groundContacts = 0
-    setupCollisionHandlers()
     timeSincePuzzleStart = 0
     puzzleStartTime = engine.timing.timestamp/1000
 }
@@ -125,6 +96,9 @@ function play() {
 
     if (keyIsDown(38)) {
         players[0].jump()
+    }
+    if (jumpCooldown > 0) {
+        jumpCooldown--
     }
     if (keyIsDown(40)) {
         players[0].descendingDark()
