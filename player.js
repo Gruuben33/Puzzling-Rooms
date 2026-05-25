@@ -4,6 +4,7 @@ class Player {
         this.color = color
         this.size = size
         this.density = density
+        this.jumpCooldown = 0
         this.body = Bodies.circle(this.position.x, this.position.y, this.size, {
             restitution: 0.01,
             isStatic: false,
@@ -34,12 +35,12 @@ class Player {
     }
 
     jump() {
-        if (isOnGround(players[0]) && jumpCooldown <= 0) {
+        if (isOnGround(players[0]) && this.jumpCooldown <= 0) {
             Body.applyForce(this.body, this.body.position, {
                 x: 0,
                 y: -jumpStrength * this.body.mass * 0.0025
             });
-            jumpCooldown = 10;
+            this.jumpCooldown = 10;
         }
         Body.setVelocity(this.body, {
             x: this.body.velocity.x,

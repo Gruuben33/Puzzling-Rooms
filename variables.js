@@ -41,7 +41,6 @@ let groundContacts = 0;
 // player variables
 let playerSize = 20
 let playerDensity = 0.1
-let jumpCooldown = 0
 let movementSpeed = 1
 let jumpStrength = 25
 let downStrength = 0.1

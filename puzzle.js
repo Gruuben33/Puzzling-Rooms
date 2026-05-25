@@ -80,12 +80,15 @@ function start() {
 }
 
 function play() {
-    if (keyIsDown(87) && engine.timing.timeScale > 0) {
-        engine.timing.timeScale -= 0.01
+    if (playerCount == 1) {
+        if (keyIsDown(87) && engine.timing.timeScale > 0) {
+            engine.timing.timeScale -= 0.01
+        }
+        if (keyIsDown(83) && engine.timing.timeScale < 1) {
+            engine.timing.timeScale += 0.01
+        }
     }
-    if (keyIsDown(83) && engine.timing.timeScale < 1) {
-        engine.timing.timeScale += 0.01
-    }
+
     if (keyIsDown(39) && keyIsDown(37)) {
         players[0].move(null)
     } else if (keyIsDown(39)) {
@@ -97,12 +100,33 @@ function play() {
     if (keyIsDown(38)) {
         players[0].jump()
     }
-    if (jumpCooldown > 0) {
+    if (players[0].jumpCooldown > 0) {
         jumpCooldown--
     }
     if (keyIsDown(40)) {
         players[0].descendingDark()
     }
+
+    if (playerCount == 2) {
+        if (keyIsDown(68) && keyIsDown(65)) {
+            players[1].move(null)
+        } else if (keyIsDown(68)) {
+            players[1].move(1)
+        } else if (keyIsDown(65)) {
+            players[1].move(-1)
+        }
+
+        if (keyIsDown(87)) {
+            players[1].jump()
+        }
+        if (players[1].jumpCooldown > 0) {
+            jumpCooldown--
+        }
+        if (keyIsDown(83)) {
+            players[1].descendingDark()
+        }
+    }
+
     buttons.forEach((Button) => {
         Button.draw()
     })
