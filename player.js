@@ -34,8 +34,8 @@ class Player {
         })
     }
 
-    jump() {
-        if (isOnGround(players[0]) && this.jumpCooldown <= 0) {
+    jump(player) {
+        if (isOnGround(player) && this.jumpCooldown <= 0) {
             Body.applyForce(this.body, this.body.position, {
                 x: 0,
                 y: -jumpStrength * this.body.mass * 0.0025

@@ -32,6 +32,7 @@ function stateChange(newState) {
     if (currentState == state_mainMenu)                 setupMainMenu()
     else if (currentState == state_firstPuzzle)         setupFirstPuzzle()
     else if (currentState == state_firstPuzzleComplete) setupFirstPuzzleComplete()
+    else if (currentState == state_secondPuzzle)        setupFirstPuzzle()
 }
 
 function handleState(state) {

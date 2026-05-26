@@ -10,7 +10,7 @@ let jumpKeyPreviouslyDown = false
 function isOnGround(Player) {
     const playerBody = Player.body;
     const activePairs = engine.pairs.list.filter(p => p.isActive);
-    
+    // there are parts here that I don't understand, I had the ai Claude explain it to me but I didn't understand
     return activePairs.some(pair => {
         if (pair.bodyA !== playerBody && pair.bodyB !== playerBody) return false;
         if (pair.bodyA === puzzleBall || pair.bodyB === puzzleBall) return false;
@@ -40,7 +40,7 @@ function setupPuzzle() {
     if (playerCount == 1) {
         players.push(
             new Player(
-                createVector(windowWidth/2 - 70, windowHeight/2 - 70),
+                createVector(100, windowHeight - 160),
                 player1Color,
                 playerSize,
                 playerDensity
@@ -49,13 +49,13 @@ function setupPuzzle() {
     } else if (playerCount == 2) {
         players.push(
             new Player(
-                createVector(windowWidth/2 - 70, windowHeight/2 - 70),
+                createVector(100, windowHeight - 160),
                 player1Color,
                 playerSize,
                 playerDensity
             ),
             new Player(
-                createVector(windowWidth/2 - 70, windowHeight/2 - 100 - 70),
+                createVector(40, windowHeight - 160),
                 player2Color,
                 playerSize,
                 playerDensity
@@ -98,7 +98,7 @@ function play() {
     }
 
     if (keyIsDown(38)) {
-        players[0].jump()
+        players[0].jump(players[0])
     }
     if (players[0].jumpCooldown > 0) {
         players[0].jumpCooldown--
@@ -117,7 +117,7 @@ function play() {
         }
 
         if (keyIsDown(87)) {
-            players[1].jump()
+            players[1].jump(players[1])
         }
         if (players[1].jumpCooldown > 0) {
             players[1].jumpCooldown--
@@ -136,7 +136,14 @@ function play() {
 }
 
 function displayControls() {
+    background(76, 175, 80, 100) // #4CAF50
     buttons.forEach((Button) => {
         Button.draw()
     })
+
+    fill("#FFFFFF")
+    textSize(96)
+    text("Level 1", windowWidth / 2, windowHeight / 2 - 160)
+    let message = Math.round((displayTime - secondsSincePuzzleStart)*100)/100
+    text(`start in ${message.toString(2)}`, windowWidth/2, windowHeight/2)
 }

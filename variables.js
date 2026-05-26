@@ -20,19 +20,20 @@ let players = []
 
 // main menu variables
 let titleSize = 160
-let mainMenuBackground = "#879384"
-let mainMenuText = "#00E8C1"
-let mainMenuButtonColor = "#D9D9D9"
+let mainMenuBackground = [135,147,132] // 879384
+let mainMenuText = [0,232,293] // 00E8C1
+let mainMenuButtonColor = [217,217,217] // D9D9D9
 let mainMenuButtonSize = 200
-let mainMenuButtonTextColor = "#000000"
+let mainMenuButtonTextColor = [0,0,0] // 000000
 let mainMenuButtonTextSize = 96
 
 // puzzle variables
-let player1Color = "#0033FF"
-let player2Color = "#FF0000"
+let player1Color = "#0033FF" // 0033FF
+let player2Color = "#FF0000" // FF0000
 let pauseButtonTextSize = 40
 let pauseButtonWidth = 200
 let pauseButtonHeight = 100
+let pauseButtonOpacity = 0
 let puzzleBall
 let puzzleSquare
 let boundaries = []

@@ -4,7 +4,7 @@ function setupFirstPuzzleComplete() {
     buttons = []
     buttons.push(
         new Button(
-            () => { leavePuzzle(state_mainMenu) },
+            () => { leavePuzzle(state_secondPuzzle) },
             createVector(windowWidth / 2, windowHeight / 2 + 180),
             280,
             80,
@@ -14,7 +14,7 @@ function setupFirstPuzzleComplete() {
             mainMenuButtonColor
         ),
         new Button(
-            () => { leavePuzzle(state_firstPuzzle) },
+            () => { leavePuzzle(state_mainMenu) },
             createVector(windowWidth / 2, windowHeight / 2 + 90),
             280,
             80,
