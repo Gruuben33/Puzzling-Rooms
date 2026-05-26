@@ -101,7 +101,7 @@ function play() {
         players[0].jump()
     }
     if (players[0].jumpCooldown > 0) {
-        jumpCooldown--
+        players[0].jumpCooldown--
     }
     if (keyIsDown(40)) {
         players[0].descendingDark()
@@ -120,7 +120,7 @@ function play() {
             players[1].jump()
         }
         if (players[1].jumpCooldown > 0) {
-            jumpCooldown--
+            players[1].jumpCooldown--
         }
         if (keyIsDown(83)) {
             players[1].descendingDark()
