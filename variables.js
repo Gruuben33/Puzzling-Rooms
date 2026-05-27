@@ -47,7 +47,7 @@ let jumpStrength = 25
 let downStrength = 0.1
 
 // timer variables
-let displayTime = 2.00
+let displayTime = 4.00
 let secondsSincePuzzleStart = 0
 let puzzleStartTime = 0
 let now = 0

@@ -28,10 +28,20 @@ function setupPuzzle() {
     buttons.push(
         new Button(
             () => {leavePuzzle(state_firstPuzzle)},
-            createVector(pauseButtonWidth, pauseButtonHeight),
+            createVector(windowWidth - pauseButtonWidth, pauseButtonHeight*2.25),
             pauseButtonWidth,
             pauseButtonHeight,
             "Retry",
+            pauseButtonTextSize,
+            mainMenuButtonTextColor,
+            mainMenuButtonColor
+        ),
+        new Button(
+            () => {leavePuzzle(state_mainMenu)},
+            createVector(windowWidth - pauseButtonWidth, pauseButtonHeight*0.75),
+            pauseButtonWidth,
+            pauseButtonHeight,
+            "Main Menu",
             pauseButtonTextSize,
             mainMenuButtonTextColor,
             mainMenuButtonColor
@@ -146,4 +156,8 @@ function displayControls() {
     textSize(96)
     text("Level 1", windowWidth / 2, windowHeight / 2 - 160)
     text(`start in ${Math.round(-(secondsSincePuzzleStart - displayTime))} seconds`, windowWidth/2, windowHeight/2)
+
+    textSize(promptSize)
+    text("Player 1 moves with ↑ ← ↓ → ", windowWidth/4, windowHeight/3*2)
+    if (playerCount == 2) text("Player 2 moves with W A S D", windowWidth/4*3, windowHeight/3*2)
 }

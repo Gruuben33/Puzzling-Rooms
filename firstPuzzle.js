@@ -46,7 +46,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let rightOverHang = Bodies.rectangle(windowWidth-150, 175, 300, 350, {
+    let rightOverHang = Bodies.rectangle(windowWidth-150, 150, 300, 300, {
         isStatic: true,
         friction: 0.05,
         render: {
@@ -101,7 +101,7 @@ function setupFirstPuzzleElements() {
             lineWidth: 0
         }
     })
-    let slit3 = Bodies.rectangle(1370, 430, 150, 25, {
+    let slit3 = Bodies.rectangle(1370, 450, 150, 25, {
         isStatic: true,
         friction: 0.05,
         render: {
