@@ -27,11 +27,11 @@ function setupPuzzle() {
     buttons = []
     buttons.push(
         new Button(
-            () => {leavePuzzle(state_mainMenu)},
+            () => {leavePuzzle(state_firstPuzzle)},
             createVector(pauseButtonWidth, pauseButtonHeight),
             pauseButtonWidth,
             pauseButtonHeight,
-            "Pause",
+            "Retry",
             pauseButtonTextSize,
             mainMenuButtonTextColor,
             mainMenuButtonColor
@@ -130,6 +130,7 @@ function play() {
     buttons.forEach((Button) => {
         Button.draw()
     })
+    text(secondsSincePuzzleStart.toFixed(2), windowWidth - 50, 50)
     if (Collision.collides(puzzleBall, puzzleSquare)) {
         leavePuzzle(currentState+1)
     }
@@ -144,6 +145,5 @@ function displayControls() {
     fill("#FFFFFF")
     textSize(96)
     text("Level 1", windowWidth / 2, windowHeight / 2 - 160)
-    let message = Math.round((displayTime - secondsSincePuzzleStart)*100)/100
-    text(`start in ${message.toString(2)}`, windowWidth/2, windowHeight/2)
+    text(`start in ${Math.round(-(secondsSincePuzzleStart - displayTime))} seconds`, windowWidth/2, windowHeight/2)
 }
