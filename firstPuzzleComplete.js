@@ -1,5 +1,5 @@
 function setupFirstPuzzleComplete() {
-    lastLevelTime = secondsSincePuzzleStart
+    lastLevelTime = secondsSincePuzzleStart - displayTime
 
     buttons = []
     buttons.push(
@@ -14,7 +14,7 @@ function setupFirstPuzzleComplete() {
             mainMenuButtonColor
         ),
         new Button(
-            () => { leavePuzzle(state_mainMenu) },
+            () => { leavePuzzle(state_firstPuzzle) },
             createVector(windowWidth / 2, windowHeight / 2 + 90),
             280,
             80,
@@ -24,7 +24,7 @@ function setupFirstPuzzleComplete() {
             mainMenuButtonColor
         ),
         new Button(
-            () => { leaderboardMessage = "Leaderboard is coming soon!" },
+            () => { console.log("nothing happened!") },
             createVector(windowWidth / 2, windowHeight / 2 + 270),
             280,
             80,

@@ -90,15 +90,6 @@ function start() {
 }
 
 function play() {
-    if (playerCount == 1) {
-        if (keyIsDown(87) && engine.timing.timeScale > 0) {
-            engine.timing.timeScale -= 0.01
-        }
-        if (keyIsDown(83) && engine.timing.timeScale < 1) {
-            engine.timing.timeScale += 0.01
-        }
-    }
-
     if (keyIsDown(39) && keyIsDown(37)) {
         players[0].move(null)
     } else if (keyIsDown(39)) {
@@ -140,7 +131,7 @@ function play() {
     buttons.forEach((Button) => {
         Button.draw()
     })
-    text(secondsSincePuzzleStart.toFixed(2), windowWidth - 50, 50)
+    text((secondsSincePuzzleStart - displayTime).toFixed(2), windowWidth - 50, 50)
     if (Collision.collides(puzzleBall, puzzleSquare)) {
         leavePuzzle(currentState+1)
     }
